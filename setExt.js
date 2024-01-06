@@ -79,4 +79,12 @@ export default class SetExt extends Set {
   toArray() {
     return [...this];
   }
+
+  toStruct(instruction) {
+    const { base, step } = instruction;
+    return [...this].reduce(
+      (result, elem, index) => step(result, elem, index + 1, this.size),
+      base
+    );
+  }
 }
